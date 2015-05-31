@@ -1,0 +1,28 @@
+{
+  "name": "8583",
+  "version": "1.0.0",
+  "description": "ISO8583 message builder and parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "keywords": [
+    "iso8583",
+    "8583",
+    "parser",
+    "builder",
+    "financial"
+  ],
+  "author": "Dhi Aurrahman <diorahman@rockybars.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bases": "^0.2.1",
+    "extsprintf": "^1.3.0",
+    "ksort": "0.0.6",
+    "moment": "^2.10.3"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^6.0.3"
+  }
+}
