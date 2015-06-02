@@ -1,6 +1,4 @@
 var ISO8583 = require('./');
-var moment = require('moment');
-
 var iso = '0800822000000000000004000000000000000516063439749039301';
 /*
 MTI: 0800
