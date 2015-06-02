@@ -367,9 +367,6 @@ class JAK8583
 			}
 		}
 		$this->_bitmap = $tmp;
-    echo '-> '. $this->_bitmap;
-    echo ' | ';
-    
 		return $tmp;
 	}
 
@@ -388,19 +385,21 @@ class JAK8583
 		{
 			$inp = substr($this->_iso, 4+16, strlen($this->_iso)-4-16);
 
-		}
-
+    }
 		if (is_array($this->_data))
 		{
 			$this->_valid['data']         = true;
 			foreach ($this->_data as $key =>$val)
 			{
-				$this->_valid['de'][$key] = false;
+        $this->_valid['de'][$key] = false;
+        print 'Current key: '. $key. "\n";
 				if ($this->DATA_ELEMENT[$key][0]!='b')
-				{
+        {
+          print 'is not b'. '\n';
 					//fixed length
 					if ($this->DATA_ELEMENT[$key][2] == self::FIXED_LENGTH)
-					{
+          {
+            print 'is fixed'. '\n';
 						$tmp = substr($inp, 0, $this->DATA_ELEMENT[$key][1]);
 						if (strlen($tmp) == $this->DATA_ELEMENT[$key][1])
 						{
@@ -413,14 +412,16 @@ class JAK8583
 								$this->_data[$key] = ltrim(substr($inp, 0, $this->DATA_ELEMENT[$key][1]));
 							}
 							$this->_valid['de'][$key] = true;
-							$inp                      = substr($inp, $this->DATA_ELEMENT[$key][1], strlen($inp)-$this->DATA_ELEMENT[$key][1]);
+              $inp                      = substr($inp, $this->DATA_ELEMENT[$key][1], strlen($inp)-$this->DATA_ELEMENT[$key][1]);
 						}
 					}
 					//dynamic length
 					else
 					{
+            print 'is dynamic'. '\n';
 						$len = strlen($this->DATA_ELEMENT[$key][1]);
-						$tmp = substr($inp, 0, $len);
+            $tmp = substr($inp, 0, $len);
+            print 'tmp: '. $tmp. ' - '. $len .'\n';
 						if (strlen($tmp) == $len )
 						{
 							$num = (integer) $tmp;
@@ -445,7 +446,8 @@ class JAK8583
 					}
 				}
 				else
-				{
+        {
+          print 'is b\n';
 					if ($key>1)
 					{
 						//fixed length
@@ -472,7 +474,8 @@ class JAK8583
 						}
 					}
 				}
-				if (!$this->_valid['de'][$key]) $this->_valid['data'] = false;
+        if (!$this->_valid['de'][$key]) $this->_valid['data'] = false;
+        print_r($this->_data);
 			}
 		}
 

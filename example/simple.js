@@ -1,0 +1,8 @@
+var ISO8583 = require('../');
+var iso = '9210623A40010AC180000608400138000104022047200000132047200402040360120300200000000001300DEVELKAI201000400200000088PWT';
+var iso8583 = new ISO8583();
+iso8583.addISO(iso);
+console.log(iso8583.getMTI());
+console.log(iso8583.getBitmap());
+console.log(iso8583.getData());
+
